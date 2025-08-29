@@ -1,8 +1,14 @@
+<img width="1247" height="873" alt="image" src="https://github.com/user-attachments/assets/dee7b869-6f54-4531-a23a-55c3f65ea29f" />
+<img width="1232" height="874" alt="image" src="https://github.com/user-attachments/assets/95833e6d-7c48-45a4-8427-b87cdbdeabfe" />
+<img width="1198" height="869" alt="image" src="https://github.com/user-attachments/assets/0a669726-25f3-4723-a91c-70945c7e5229" />
+
+
+
 # Note Taking Full-Stack Application
 
 This is a complete full-stack note-taking application built with a modern tech stack including React, Node.js, Express, and MongoDB, all written in TypeScript. It features a robust user authentication system with both Email/OTP and Google OAuth, allowing users to securely manage their notes online.
 
-**Live Demo:** [**https://your-frontend-url.vercel.app**](https://your-frontend-url.vercel.app) *(<- Replace with your Vercel URL)*
+**Live Demo:** [**https://your-frontend-url.vercel.app**]([https://your-frontend-url.vercel.app](https://note-app-weld-kappa.vercel.app)) 
 
 ## Features
 
