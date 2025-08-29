@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import baseUrl from "../config/baseURL";
 
 const OtpPage: React.FC = () => {
   const [otp, setOtp] = useState("");
@@ -38,7 +39,9 @@ const OtpPage: React.FC = () => {
 
     try {
       setCanResend(false); // Disable button immediately
-      const url = "http://localhost:5000/api/users/resend-otp";
+
+      const url = `${baseUrl}/api/users/resend-otp`;
+
       await axios.post(url, { email });
       toast.success("A new OTP has been sent.");
       setCountdown(60); // Reset timer
@@ -64,7 +67,7 @@ const OtpPage: React.FC = () => {
     event.preventDefault();
     // ... (keep your existing handleSubmit logic)
     try {
-      const url = "http://localhost:5000/api/users/verify-otp";
+      const url = `${baseUrl}/api/users/verify-otp`;
       const response = await axios.post(url, { email, otp });
       localStorage.setItem("authToken", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));

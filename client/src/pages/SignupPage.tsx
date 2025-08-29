@@ -4,6 +4,7 @@ import axios from "axios"; // 1. Import axios
 import toast from "react-hot-toast"; // 1. Import toast
 import GoogleAuthButton from "../components/GoogleAuthButton";
 import HdLogo from "../components/HdLogo";
+import baseUrl from "../config/baseURL";
 
 const SignupPage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const SignupPage: React.FC = () => {
     event.preventDefault();
 
     try {
-      const url = "http://localhost:5000/api/users/register";
+      const url = `${baseUrl}/api/users/register`;
       const userData = { name, dob, email };
       const response = await axios.post(url, userData);
 

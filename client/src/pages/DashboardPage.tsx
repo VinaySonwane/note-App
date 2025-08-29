@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css"; // Import modal styles
 import NoteCard from "../components/NoteCard"; // Import our new NoteCard component
+import baseUrl from "../config/baseURL";
 
 // Define the shape of a User and a Note for TypeScript
 interface User {
@@ -57,10 +58,7 @@ const DashboardPage: React.FC = () => {
           },
         };
 
-        const { data } = await axios.get(
-          "http://localhost:5000/api/notes",
-          config
-        );
+        const { data } = await axios.get(`${baseUrl}/api/notes`, config);
         setNotes(data);
       } catch (error) {
         toast.error("Could not fetch notes.");
@@ -86,7 +84,7 @@ const DashboardPage: React.FC = () => {
       const token = getToken();
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const { data: newNote } = await axios.post(
-        "http://localhost:5000/api/notes",
+        `${baseUrl}/api/notes`,
         { content: newNoteContent },
         config
       );
@@ -112,10 +110,7 @@ const DashboardPage: React.FC = () => {
     try {
       const token = getToken();
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      await axios.delete(
-        `http://localhost:5000/api/notes/${noteToDelete}`,
-        config
-      );
+      await axios.delete(`${baseUrl}/api/notes/${noteToDelete}`, config);
 
       setNotes(notes.filter((note) => note._id !== noteToDelete));
       toast.success("Note deleted.");

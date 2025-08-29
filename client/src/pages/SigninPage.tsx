@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import GoogleAuthButton from "../components/GoogleAuthButton";
 import HdLogo from "../components/HdLogo";
+import baseUrl from "../config/baseURL";
 
 const SigninPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const SigninPage: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const url = "http://localhost:5000/api/users/verify-otp"; // Use the verify-otp endpoint for login
+      const url = `${baseUrl}/api/users/verify-otp`; // Use the verify-otp endpoint for login
       const response = await axios.post(url, { email, otp });
 
       localStorage.setItem("authToken", response.data.token);
@@ -40,7 +41,7 @@ const SigninPage: React.FC = () => {
     }
 
     try {
-      const url = "http://localhost:5000/api/users/resend-otp";
+      const url = `${baseUrl}/api/users/resend-otp`;
       await axios.post(url, { email });
 
       // On success, show this success toast

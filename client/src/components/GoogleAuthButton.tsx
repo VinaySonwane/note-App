@@ -3,6 +3,7 @@ import { GoogleLogin, type CredentialResponse } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import baseUrl from "../config/baseURL";
 
 const GoogleAuthButton: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const GoogleAuthButton: React.FC = () => {
 
     try {
       // Send the Google credential to our backend
-      const url = "http://localhost:5000/api/users/google-auth";
+      const url = `${baseUrl}/api/users/google-auth`;
       const { data } = await axios.post(url, { credential });
 
       // Save our app's token and user data, then navigate
