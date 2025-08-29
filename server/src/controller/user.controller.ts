@@ -114,15 +114,20 @@ export const resendOtp = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Server error." });
   }
 };
-
-// ==> ADD THIS NEW FUNCTION
 export const googleAuth = async (req: Request, res: Response) => {
-  const { credential } = req.body; // 'credential' is the token from Google
+  const { credential } = req.body;
+
+  // 1. Add this check at the beginning of the function
+  const googleClientId = process.env.GOOGLE_CLIENT_ID;
+  if (!googleClientId) {
+    console.error("Google Client ID is not configured on the server.");
+    return res.status(500).json({ message: "Server configuration error." });
+  }
 
   try {
     const ticket = await client.verifyIdToken({
       idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
+      audience: googleClientId, // 2. Use the checked variable here
     });
     const payload = ticket.getPayload();
 
@@ -132,19 +137,16 @@ export const googleAuth = async (req: Request, res: Response) => {
 
     const { email, name } = payload;
 
-    // Check if user already exists
     let user = await User.findOne({ email });
 
     if (!user) {
-      // If user doesn't exist, create them
       user = await User.create({
         name,
         email,
-        dob: new Date(), // Placeholder DOB, as Google doesn't provide it
+        dob: new Date(),
       });
     }
 
-    // Return our application's JWT
     res.status(200).json({
       message: "Google sign-in successful!",
       user: {
