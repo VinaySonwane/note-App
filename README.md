@@ -8,7 +8,7 @@
 
 This is a complete full-stack note-taking application built with a modern tech stack including React, Node.js, Express, and MongoDB, all written in TypeScript. It features a robust user authentication system with both Email/OTP and Google OAuth, allowing users to securely manage their notes online.
 
-**Live Demo:** [**https://your-frontend-url.vercel.app**]([https://your-frontend-url.vercel.app](https://note-app-weld-kappa.vercel.app)) 
+**Live Demo:** [**https://your-frontend-url.vercel.app**](https://note-app-weld-kappa.vercel.app)
 
 ## Features
 
